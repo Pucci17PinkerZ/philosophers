@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I/usr/include -I$(DIRSRC)
 RM = rm -rf
 SRC = $(DIRSRC)/philo.c \
-
+$(DIRSRC)/clean_exit.c \
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c

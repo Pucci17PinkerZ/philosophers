@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 06:44:03 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/02/02 07:56:18 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/02/02 11:24:39 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_data
 	long			sleep_time;
 	int				nbr_philo;
 	pthread_mutex_t	*printf_id;
+	t_philo			*philo_tab;
 }	t_data;
 
 typedef struct s_philo
