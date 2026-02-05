@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   clean_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,38 +12,17 @@
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+// void	free_args()
+// {
+
+// }
+void	free_tab(char **tab, int j)
 {
-	t_philo	philo;
-
-	if (check_arg(philo, ac, av))
-		return (1);
-	init(philo);
-
-	routine(philo);
-	return (0);
-}
-
-
-
-int	init(t_philo *philo)
-{
-	//créer  un tableau avec tout mes philo
-	//assigner les fourchette gauche droite a chque philo
-}
-
-int	manage_routine(t_philo *philo)//on va donner cette fonction a thread_create
-{
-	
-}
-
-void	start_routine_thread()
-{
-	
-}
-
-
-void	check_philo_life()//ici on va lancer un thread tout seul pour checker si les philo sont dead ou pas
-{
-
+	if (!tab)
+		return ;
+	while (tab[j])
+		j++;
+	while (j > 0)
+		free(tab[--j]);
+	free(tab);
 }
