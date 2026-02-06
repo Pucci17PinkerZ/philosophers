@@ -9,6 +9,7 @@ SRC = $(DIRSRC)/philo.c \
 $(DIRSRC)/clean_exit.c \
 $(DIRSRC)/utils.c\
 $(DIRSRC)/parsing/check_args.c\
+$(DIRSRC)/parsing/check_args_value.c\
 $(DIRSRC)/parsing/clean_parsing.c\
 $(DIRSRC)/parsing/parsing_utils.c\
 $(DIRSRC)/parsing/split.c\

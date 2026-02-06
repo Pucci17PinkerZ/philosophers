@@ -12,9 +12,13 @@
 
 #include "philo.h"
 
-int	check_args_value()
+int	check_args_value(t_table *table, char **args)
 {
-
+	//checker chaque élément dans le tableau dans une boucle while
+	//free les éléments seulements à la sortie
+	//si le chiffre est juste le transformer de char à int
+	// l'assigner a la valeur de i avec des conditions dans l'emplacement souhaité dans la struct
+	//puis le parsing est terminé
 }
 
 

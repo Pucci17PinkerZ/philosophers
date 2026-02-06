@@ -20,19 +20,8 @@ int	check_arg(t_table *table, char **av)
 	args = assign_args(av);
 	if (!args)
 		return (1);
-	while (*args)
-	{
-		printf("%s\n", *args);
-		args++;
-	}
-	// free_tab(args, 0);
-	// if (check_args_value(table, args))
-		// return (1);
-	(void)table;
-	// if ()
-	// 	return (1);
-	//transformer les arguments de char à int
-	//les ajouter a la struct
+	if (check_args_value(table, args))
+		return (free_tab(args, 0), 1);
 	return (0);
 }
 
@@ -42,17 +31,16 @@ char	**assign_args(char **av)
 	char	**args;
 	char	**tmp;
 
-	// printf("je passe ici\n");//	printf("je passe ici\n",);
 	nbr_args = find_args_nbr(av);
 	if (nbr_args == -1)
-		return (printf("je passe ici2\n"), NULL);
+		return (NULL);
 	tmp = malloc(sizeof(char *) * (nbr_args + 1));
 	if (!tmp)
-		return (printf("je passe ici4\n"), NULL);
+		return (NULL);
 	args = dup_tab(av, tmp, 0);
 	if (!args)
-		return (printf("je passe ici3\n"), free_tab(tmp, 0),free_tab(args, 0), NULL);
-	return (printf("je passe ici2\n"), args);
+		return (free_tab(tmp, 0),free_tab(args, 0), NULL);
+	return (args);
 }
 
 
@@ -68,14 +56,14 @@ int	find_args_nbr(char **av)
 	{
 		tab = split(av[i],' ');
 		if (!tab)
-			return (printf("args_nbr not ok2\n"), -1);
+			return (-1);
 		tab_size += tab_len(tab);
 		free_tab(tab, 0);
 		i++;
 	}
 	if (tab_size < 4 || tab_size > 5)
 		return (printf("args_nbr not ok\n"), -1);
-	return (printf("tab_size == %d\n", tab_size), tab_size);
+	return (tab_size);
 }
 
 
@@ -99,7 +87,6 @@ char	**dup_tab(char **av, char **tab, int index)
 	int		y;
 
 	tab_pos = 0;
-	// printf("tmp == %p\n", tmp);
 	while (av[index])
 	{
 		y = 0;

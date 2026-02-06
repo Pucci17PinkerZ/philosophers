@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	(void)ac;
 	if (check_arg(&table, av + 1))
 		return (1);
-	// init(table);
+	// init_philo(table);
 
 	// routine(table);
 	return (0);
@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 
 
 
-// int	init(t_philo *philo)
+// int	init_philo(t_philo *philo)
 // {
 // 	//créer  un tableau avec tout mes philo
 // 	//assigner les fourchette gauche droite a chque philo
