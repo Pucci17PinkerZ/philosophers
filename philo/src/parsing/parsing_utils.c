@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_parsing.c                                    :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 06:55:41 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/02/06 14:30:12 by pucci17pink      ###   ########.fr       */
+/*   Created: 2026/02/06 12:30:17 by pucci17pink       #+#    #+#             */
+/*   Updated: 2026/02/06 12:32:22 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	free_tab(char **tab, int j)
+char	*strdup(const char *s)
 {
-	if (!tab)
-		return ;
-	while (tab[j])
-		j++;
-	while (j > 0)
-		free(tab[--j]);
-	free(tab);
+	size_t	len;
+	char	*dup;
+	size_t	i;
+
+	i = 0;
+	while (s[len])
+		len++;
+	dup = malloc(sizeof(char) * (len + 1));
+	if (!dup)
+		return (NULL);
+	while (i < len)
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	return (dup[len] = '\0', (char *)dup);
 }

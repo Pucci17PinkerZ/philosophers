@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 06:55:41 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/02/02 11:27:46 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/02/06 14:29:08 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ int	check_arg(t_philo *philo, int ac, char **av)
 	//transformer les arguments de char à int
 	//les ajouter a la struct
 	return (0);
+}
+
+char	**assign_args(char **av)
+{
+	int	nbr_args;
+	char	**args;
+
+	nbr_args = find_args_nbr(av);
+	if (nbr_args == -1)
+		return (NULL);
+	args = malloc(sizeof(char *) * (nbr_args + 1));
+	if (!args)
+		return (1);
+	args = dup_tab(av, args)
+	if (!args)
+		return (NULL);
+	return ;
 }
 
 int	find_args_nbr(char **av)
@@ -54,7 +71,7 @@ int	find_args_nbr(char **av)
 int	tab_len(char **tab)
 {
 	if (!tab || !*tab)
-		return (1);
+		return (0);
 	int	i;
 	i = 0;
 	while (tab[i])
@@ -64,29 +81,34 @@ int	tab_len(char **tab)
 	return (i);
 }
 
-
-
-char	**assign_args(char **av)
+char	**dup_tab(char **av, char **tab)
 {
-	int	i;
-	int	nbr_args;
-	char	**args;
+	char	**tmp;
+	int		index;
+	int		tab_pos;
+	int		y;
 
-	nbr_args = find_args_nbr();
-	if (nbr_args == -1)
-		return (NULL);
-	args = malloc(sizeof(char *) * (nbr_args + 1));
-	if (!args)
-		return (1);
-	i = 0;
-	while (av[i])
+	tab_pos = 0;
+	index = 0;
+	while (av[index])
 	{
-
+		y = 0;
+		tmp = split(av[index],' ');
+		if (!tmp)
+			return (free_tab(tab, 0), NULL);
+		while (tmp[y])
+		{
+			tab[tab_pos + y] = strdup(tmp[y]);
+			if (!tab[tab_pos + y])
+				return free_tab(tab, 0), (NULL);
+			y++;
+		}
+		tab_pos += y;
+		free_tab(tmp, 0);
+		i++;
 	}
-	return ;
+	return (tab);
 }
-
-int	find_args_nbr
 
 long long	ft_atoll(const char *nptr)
 {
