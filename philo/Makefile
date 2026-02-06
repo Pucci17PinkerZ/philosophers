@@ -1,11 +1,18 @@
 CC = cc
 NAME = philo
 DIRSRC = src
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I/usr/include -I$(DIRSRC)
+CFLAGS = -Wall -Wextra -Werror -g
+INCLUDES = -I.
+
 RM = rm -rf
 SRC = $(DIRSRC)/philo.c \
 $(DIRSRC)/clean_exit.c \
+$(DIRSRC)/utils.c\
+$(DIRSRC)/parsing/check_args.c\
+$(DIRSRC)/parsing/clean_parsing.c\
+$(DIRSRC)/parsing/parsing_utils.c\
+$(DIRSRC)/parsing/split.c\
+
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c

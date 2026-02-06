@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 12:30:17 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/02/06 12:32:22 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/02/06 15:28:08 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*strdup(const char *s)
 	size_t	i;
 
 	i = 0;
+	len = 0;
 	while (s[len])
 		len++;
 	dup = malloc(sizeof(char) * (len + 1));

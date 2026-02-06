@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 06:44:03 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/02/02 11:24:39 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/02/06 15:27:35 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+#include <stdbool.h>
 # include <pthread.h>
 
 // typedef (changer le nom des fonctions ou struct chiantes)
 
 typedef struct s_data
 {
+	bool			as_eat;
+	bool			as_sleep;
 	long			die_time;
 	long			eat_time;
 	long			sleep_time;
-	int				nbr_philo;
 	pthread_mutex_t	*printf_id;
-	t_philo			*philo_tab;
+
 }	t_data;
 
 typedef struct s_philo
@@ -42,18 +44,40 @@ typedef struct s_philo
 	t_data			*data;
 }	t_philo;
 
+typedef struct s_table
+{
+	int				nbr_of_philo;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	long			max_meal;
+	t_philo			*philo_tab;
+}	t_table;
+	
 /* ========================================================================== */
 /* ===============================parsing=====================================*/
 /* ========================================================================== */
+int			check_arg(t_table *table, char **av);
+char		**assign_args(char **av);
+int			find_args_nbr(char **av);
+int			tab_len(char **tab);
+char		**dup_tab(char **av, char **tab, int index);
+long long	ft_atoll(const char *nptr);
+char		**split(char const *s, char c);
+
 
 
 /* ========================================================================== */
 /* ===============================routine=====================================*/
 /* ========================================================================== */
+int	main(int ac, char **av);
+
+/*utils*/
+void	set_data(void *s, int n);
 
 /* ========================================================================== */
 /* ===============================cleaners====================================*/
 /* ========================================================================== */
-
+void	free_tab(char **tab, int j);
 
 #endif
