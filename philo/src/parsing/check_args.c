@@ -12,16 +12,17 @@
 
 #include "philo.h"
 
-int	check_arg(t_table *table, char **av)
+int	check_args(t_table *table, char **av)
 {
 	char	**args;
-
 
 	args = assign_args(av);
 	if (!args)
 		return (1);
 	if (check_args_value(table, args))
-		return (free_tab(args, 0), 1);
+		return (free_tab(args, 0),printf("value not ok\n"), 1);
+	free_tab(args, 0);
+	printf("args ok!\n");
 	return (0);
 }
 

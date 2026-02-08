@@ -57,13 +57,16 @@ typedef struct s_table
 /* ========================================================================== */
 /* ===============================parsing=====================================*/
 /* ========================================================================== */
-int			check_arg(t_table *table, char **av);
+int			check_args(t_table *table, char **av);
+int			check_args_value(t_table *table, char **args);
+int			is_arg_nbr(char *arg);
 char		**assign_args(char **av);
 int			find_args_nbr(char **av);
 int			tab_len(char **tab);
 char		**dup_tab(char **av, char **tab, int index);
-long long	ft_atoll(const char *nptr);
+long long	atoll(const char *nptr);
 char		**split(char const *s, char c);
+void	set_table_values(t_table *table, int nbr, int i);
 
 
 

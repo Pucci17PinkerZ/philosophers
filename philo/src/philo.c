@@ -18,8 +18,14 @@ int	main(int ac, char **av)
 
 	set_data(&table, sizeof(t_table));
 	(void)ac;
-	if (check_arg(&table, av + 1))
+	if (check_args(&table, av + 1))
 		return (1);
+	printf("----------\n");
+	printf("table->nbr_of_philo == %d\n", table.nbr_of_philo);
+	printf("table->time_to_die == %ld\n", table.time_to_die);
+	printf("table->time_to_eat == %ld\n", table.time_to_eat);
+	printf("table->time_to_sleep == %ld\n", table.time_to_sleep);
+	printf("table->max_meal == %ld\n", table.max_meal);
 	// init_philo(table);
 
 	// routine(table);
