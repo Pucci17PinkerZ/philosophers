@@ -32,13 +32,25 @@ int	main(int ac, char **av)
 	return (0);
 }
 
+int	init_philo(t_table *table)
+{
+	int	i;
 
+	i = 0;
+	table->philo_tab = malloc(sizeof(t_philo) * (table->nbr_of_philo + 1));
+	if (!table->philo_tab)
+		return (1);
+	while (table->philo_tab[i])
+	{
+		table->philo_tab[i]->id = i + 1;
+		i++;
+	}
+	table->philo_tab[i] = NULL;
+	return (0);
+}
 
-// int	init_philo(t_philo *philo)
-// {
-// 	//créer  un tableau avec tout mes philo
-// 	//assigner les fourchette gauche droite a chque philo
-// }
+	//créer  un tableau avec tout mes philo
+	//assigner les fourchette gauche droite a chque philo
 
 // int	manage_routine(t_philo *philo)//on va donner cette fonction a thread_create
 // {

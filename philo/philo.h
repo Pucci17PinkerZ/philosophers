@@ -22,6 +22,7 @@
 # include <pthread.h>
 
 // typedef (changer le nom des fonctions ou struct chiantes)
+typedef pthread_mutex_t t_mutex;
 
 typedef struct s_data
 {
@@ -30,7 +31,7 @@ typedef struct s_data
 	long			die_time;
 	long			eat_time;
 	long			sleep_time;
-	pthread_mutex_t	*printf_id;
+	// pthread_mutex_t	*printf_id;
 
 }	t_data;
 
@@ -39,8 +40,8 @@ typedef struct s_philo
 	int				id;
 	int				meal_eaten;
 	long			last_meal;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
+	t_mutex	*right_fork;
+	t_mutex	*left_fork;
 	t_data			*data;
 }	t_philo;
 
