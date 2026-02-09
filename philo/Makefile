@@ -14,15 +14,15 @@ $(DIRSRC)/parsing/clean_parsing.c\
 $(DIRSRC)/parsing/parsing_utils.c\
 $(DIRSRC)/parsing/split.c\
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o) 
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(CFLAGS) -o $(NAME) 
 
 clean:
 	$(RM) $(OBJ)

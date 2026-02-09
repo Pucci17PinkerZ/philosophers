@@ -52,7 +52,8 @@ typedef struct s_table
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			max_meal;
-	t_philo			*philo_tab;
+	t_philo			**philo_tab;
+	t_mutex			*fork_tab;
 }	t_table;
 	
 /* ========================================================================== */
@@ -75,6 +76,7 @@ void	set_table_values(t_table *table, int nbr, int i);
 /* ===============================routine=====================================*/
 /* ========================================================================== */
 int	main(int ac, char **av);
+int	init_philo(t_table *table);
 
 /*utils*/
 void	set_data(void *s, int n);
