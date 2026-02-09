@@ -22,10 +22,9 @@ int	main(int ac, char **av)
 		return (1);
 	if (setup_struct(&table))
 		return (1);
-	// routine(table);
+	// init_routine(table);
 	return (0);
 }
-
 
 	//créer  un tableau avec tout mes philo
 	//assigner les fourchette gauche droite a chque philo

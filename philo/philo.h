@@ -28,11 +28,11 @@ typedef struct s_data
 {
 	bool			as_eat;
 	bool			as_sleep;
+	bool			is_thinking;
 	long			die_time;
 	long			eat_time;
 	long			sleep_time;
 	// pthread_mutex_t	*printf_id;
-
 }	t_data;
 
 typedef struct s_philo
@@ -40,8 +40,9 @@ typedef struct s_philo
 	int				id;
 	int				meal_eaten;
 	long			last_meal;
-	t_mutex		*right_fork;
-	t_mutex		*left_fork;
+	struct s_table	*table;
+	t_mutex			*right_fork;
+	t_mutex			*left_fork;
 	t_data			*data;
 }	t_philo;
 
@@ -68,29 +69,31 @@ int			tab_len(char **tab);
 char		**dup_tab(char **av, char **tab, int index);
 long long	atoll(const char *nptr);
 char		**split(char const *s, char c);
-void	set_table_values(t_table *table, int nbr, int i);
+void		set_table_values(t_table *table, int nbr, int i);
 
 /* ========================================================================== */
 /* ===============================init========================================*/
 /* ========================================================================== */
-int	setup_struct(t_table *table);
-int	init_fork(t_table *table);
-int	init_fork_tab(t_table *table);
-int	init_philo(t_table *table);
+int			setup_struct(t_table *table);
+int			init_fork(t_table *table);
+int			init_fork_tab(t_table *table);
+int			init_philo(t_table *table);
 
 
 /* ========================================================================== */
 /* ===============================routine=====================================*/
 /* ========================================================================== */
-int	main(int ac, char **av);
-int	init_philo(t_table *table);
+int			main(int ac, char **av);
+int			init_routine(t_table *table);
+void		*routine(void *table);
+
 
 /*utils*/
-void	set_data(void *s, int n);
+void		set_data(void *s, int n);
 
 /* ========================================================================== */
 /* ===============================cleaners====================================*/
 /* ========================================================================== */
-void	free_tab(char **tab, int j);
+void		free_tab(char **tab, int j);
 
 #endif

@@ -12,3 +12,21 @@
 
 #include "philo.h"
 
+int	init_routine(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->nbr_of_philo)
+	{
+		// pthread_create();
+		i++;
+	}
+	return (0);
+}
+
+// void	*routine(void *table)
+// {
+	
+// 	return (0);
+// }
