@@ -1,18 +1,23 @@
 CC = cc
 NAME = philo
 DIRSRC = src
+DIRPARSING = parsing
+DIRINIT = init
+DIRROUTINE = routine
+DIRCLEAN = clean
 CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I.
 
 RM = rm -rf
 SRC = $(DIRSRC)/philo.c \
-$(DIRSRC)/clean_exit.c \
-$(DIRSRC)/utils.c\
-$(DIRSRC)/parsing/check_args.c\
-$(DIRSRC)/parsing/check_args_value.c\
-$(DIRSRC)/parsing/clean_parsing.c\
-$(DIRSRC)/parsing/parsing_utils.c\
-$(DIRSRC)/parsing/split.c\
+$(DIRSRC)/clean/clean_exit.c \
+$(DIRSRC)/$(DIRINIT)/setup_struct.c\
+$(DIRSRC)/$(DIRPARSING)/check_args.c\
+$(DIRSRC)/$(DIRPARSING)/check_args_value.c\
+$(DIRSRC)/$(DIRPARSING)/parsing_utils.c\
+$(DIRSRC)/$(DIRPARSING)/split.c\
+$(DIRSRC)/$(DIRROUTINE)/routine.c\
+$(DIRSRC)/$(DIRROUTINE)/utils.c\
 
 OBJ = $(SRC:.c=.o) 
 
