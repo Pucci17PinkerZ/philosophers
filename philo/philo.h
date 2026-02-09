@@ -40,8 +40,8 @@ typedef struct s_philo
 	int				id;
 	int				meal_eaten;
 	long			last_meal;
-	t_mutex	*right_fork;
-	t_mutex	*left_fork;
+	t_mutex		*right_fork;
+	t_mutex		*left_fork;
 	t_data			*data;
 }	t_philo;
 
@@ -53,7 +53,7 @@ typedef struct s_table
 	long			time_to_sleep;
 	long			max_meal;
 	t_philo			**philo_tab;
-	t_mutex			*fork_tab;
+	t_mutex			**fork_tab;
 }	t_table;
 	
 /* ========================================================================== */
@@ -70,6 +70,13 @@ long long	atoll(const char *nptr);
 char		**split(char const *s, char c);
 void	set_table_values(t_table *table, int nbr, int i);
 
+/* ========================================================================== */
+/* ===============================init========================================*/
+/* ========================================================================== */
+int	setup_struct(t_table *table);
+int	init_fork(t_table *table);
+int	init_fork_tab(t_table *table);
+int	init_philo(t_table *table);
 
 
 /* ========================================================================== */
