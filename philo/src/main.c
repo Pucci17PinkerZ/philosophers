@@ -27,6 +27,39 @@ int	main(int ac, char **av)
 	return (0);
 }
 
+int	init_routine(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->nbr_of_philo)
+	{
+		if (pthread_create(&table->philo_tab[i]->thread_id, NULL,
+			routine, (void *)table->philo_tab[i]))
+			return (printf("error philo_thread creation"), 1);
+		i++;
+	}
+	if (pthread_create(&table->monitor, NULL, monitor_routine, NULL))
+	return (0);
+}
+
+int	join_all_thread(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->nbr_of_philo)
+	{
+		if (pthread_join(table->philo_tab[i]->thread_id, NULL,
+			routine, (void *)table->philo_tab[i]))
+			return (printf("error philo_thread join"), 1);
+		i++;
+	}
+	if (pthread_join(table->monitor, NULL);
+		return (printf("error monitor_thread join"), 1);
+	return (0);
+}
+
 	//créer  un tableau avec tout mes philo
 	//assigner les fourchette gauche droite a chque philo
 

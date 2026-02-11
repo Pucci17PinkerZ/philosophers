@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I.
 
 RM = rm -rf
-SRC = $(DIRSRC)/philo.c \
+SRC = $(DIRSRC)/main.c \
 $(DIRSRC)/clean/clean_exit.c \
 $(DIRSRC)/$(DIRINIT)/setup_struct.c\
 $(DIRSRC)/$(DIRPARSING)/check_args.c\
@@ -18,6 +18,8 @@ $(DIRSRC)/$(DIRPARSING)/parsing_utils.c\
 $(DIRSRC)/$(DIRPARSING)/split.c\
 $(DIRSRC)/$(DIRROUTINE)/routine.c\
 $(DIRSRC)/$(DIRROUTINE)/utils.c\
+$(DIRSRC)/$(DIRROUTINE)/monitoring.c\
+# $(DIRSRC)/$(DIRROUTINE)/utils.c\
 
 OBJ = $(SRC:.c=.o) 
 

@@ -26,27 +26,20 @@
 // typedef (changer le nom des fonctions ou struct chiantes)
 typedef pthread_mutex_t t_mutex;
 
-typedef struct s_data
-{
-	bool			as_eat;
-	bool			as_sleep;
-	bool			is_thinking;
-	long			die_time;
-	long			eat_time;
-	long			sleep_time;
-	// pthread_mutex_t	*printf_id;
-}	t_data;
+
 
 typedef struct s_philo
 {
 	int				id;
 	int				meal_eaten;
 	long			last_meal;
+	bool			eating;
+	bool			as_sleep;
+	bool			is_dead;
 	struct s_table	*table;
 	t_mutex			*right_fork;
 	t_mutex			*left_fork;
-	t_data			*data;
-	pthread_t		*thread_id;
+	pthread_t		thread_id;
 }	t_philo;
 
 typedef struct s_table
@@ -56,12 +49,15 @@ typedef struct s_table
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			max_meal;
+	bool			dead_routine;
 	t_philo			**philo_tab;
 	t_mutex			**fork_tab;
-	
+	t_mutex			*write_mutex;
+	t_mutex			*death_mutex;
+	t_mutex			*meal_mutex;
 	pthread_t		*monitor;
 }	t_table;
-	
+
 /* ========================================================================== */
 /* ===============================parsing=====================================*/
 /* ========================================================================== */
@@ -102,3 +98,4 @@ void		set_data(void *s, int n);
 void		free_tab(char **tab, int j);
 
 #endif
+

@@ -18,8 +18,6 @@
 // 		free_array((void **)table->philo_tab, 0);
 // 	if (letter == 'F')
 // 		free_array((void **)table->fork_tab, 0);
-// 	if (letter == 'D')
-// 		//free data inside philo
 // 	if (letter == 'M')
 // 		//delete tout les mutex
 // 	if (letter == 'T')

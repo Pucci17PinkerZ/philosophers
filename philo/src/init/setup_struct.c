@@ -36,11 +36,8 @@ int	init_philo(t_table *table)
 		table->philo_tab[i] = malloc(sizeof(t_philo));
 			if (!table->philo_tab[i])
 				return (1);
+		set_data(table->philo_tab[i], sizeof(t_philo));
 		table->philo_tab[i]->id = i + 1;
-		table->philo_tab[i]->data = malloc(sizeof(t_data));
-		if (!table->philo_tab[i]->data)
-			return (1);
-		set_data(table->philo_tab[i]->data, sizeof(t_data));
 		table->philo_tab[i]->table = table;
 		i++;
 	}

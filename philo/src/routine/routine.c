@@ -12,46 +12,53 @@
 
 #include "philo.h"
 
-int	init_routine(t_table *table)
-{
-	int	i;
-
-	i = 0;
-	while (i < table->nbr_of_philo)
-	{
-		if (pthread_create(table->pthread_tab[i], NULL, routine, (void *)table->philo_tab[i]))
-			return (printf("error philo_thread creation"), 1);
-		i++;
-	}
-	if ()//ici créer le thread monitor
-	return (0);
-}
-
-int	join_all_thread(t_table *table)//ATTENTION ICI il faut donner le thread id au destroy
-{
-	int	i;
-
-	i = 0;
-	while (i < table->nbr_of_philo)
-	{
-		if (pthread_destroy(table->philo_tab[i]->thread_id, NULL, routine, (void *)table->philo_tab[i]))
-			return (printf("error philo_thread destroy"), 1);
-		i++;
-	}
-	if ()//ici destroy le thread monitor
-	return (0);
-}
-
-void	*routine(void *philou)
+void	*routine(void *data)
 {
 	t_philo	*philo;
 
-	philo = philo;
-	if (philo->id % 2 == 1)
+	philo = (t_philo *)data;
+	if ((philo->id % 2) == 1)
 		usleep(1);
-	while ()
-	eat();
-	sleep();
-	think();
-	return (0);
+	while (!stop_routine(philo))
+	{
+		eat(philo, philo->table->time_to_eat);
+		sleep(philo, philo->table->time_to_sleep);
+		think(philo);
+	}
+	return (NULL);
+}
+
+void	eat(t_philo *philo, long time_to_eat)
+{
+	pthread_mutex_lock(philo->left_fork);
+	handle_message("has taken left fork🍴\n", philo, philo->id);
+	if (philo->table->nbr_of_philo == 1)
+	{
+		//si le philo est tout seul il doit mourrir
+		usleep(philo->table->time_to_die);
+		pthread_mutex_unlock(philo->left_fork);
+		return ;
+	}
+	pthread_mutex_lock(philo->right_fork);
+	handle_message("has taken right fork🍴\n", philo, philo->id);
+	pthread_mutex_lock(philo->table->is_eating);
+	philo->eating = true;
+	philo->meal_eaten++;
+	philo->last_meal = get_current_time();
+	pthread_mutex_unlock(philo->left_fork);//check ici si l'ordre ne change rien;
+	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_lock(philo->table->meal_mutex);
+	philo->eating = false;
+	pthread_mutex_unlock(philo->table->meal_mutex);
+}
+
+void	sleep(t_philo *philo, long time_to_sleep);
+{
+	handle_message("is slepping😴\n", philo, philo->id);
+	usleep(time_to_sleep);
+}
+
+void	think(t_philo *philo)
+{
+	handle_message("is thinking🤔\n", philo, philo->id);
 }
