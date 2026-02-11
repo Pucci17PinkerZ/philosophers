@@ -17,6 +17,7 @@ int	setup_struct(t_table *table)//libérer ici chaque chose si besoin ou au dess
 	if (init_philo(table))
 		return (1);
 	
+
 	if (init_fork(table))
 		return (1);
 	return (0);
@@ -39,6 +40,7 @@ int	init_philo(t_table *table)
 		table->philo_tab[i]->data = malloc(sizeof(t_data));
 		if (!table->philo_tab[i]->data)
 			return (1);
+		set_data(table->philo_tab[i]->data, sizeof(t_data));
 		table->philo_tab[i]->table = table;
 		i++;
 	}

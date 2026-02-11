@@ -21,6 +21,8 @@
 #include <stdbool.h>
 # include <pthread.h>
 
+# define MAX_PHILOS 200
+
 // typedef (changer le nom des fonctions ou struct chiantes)
 typedef pthread_mutex_t t_mutex;
 
@@ -44,6 +46,7 @@ typedef struct s_philo
 	t_mutex			*right_fork;
 	t_mutex			*left_fork;
 	t_data			*data;
+	pthread_t		*thread_id;
 }	t_philo;
 
 typedef struct s_table
@@ -55,6 +58,8 @@ typedef struct s_table
 	long			max_meal;
 	t_philo			**philo_tab;
 	t_mutex			**fork_tab;
+	
+	pthread_t		*monitor;
 }	t_table;
 	
 /* ========================================================================== */

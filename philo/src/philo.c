@@ -22,7 +22,8 @@ int	main(int ac, char **av)
 		return (1);
 	if (setup_struct(&table))
 		return (1);
-	// init_routine(table);
+	init_routine(table);
+	join_all_thread();
 	return (0);
 }
 
@@ -34,10 +35,6 @@ int	main(int ac, char **av)
 	
 // }
 
-// void	start_routine_thread()
-// {
-	
-// }
 
 
 // void	check_philo_life()//ici on va lancer un thread tout seul pour checker si les philo sont dead ou pas
