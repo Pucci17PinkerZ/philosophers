@@ -16,8 +16,8 @@ int	setup_struct(t_table *table)//libérer ici chaque chose si besoin ou au dess
 {
 	if (init_philo(table))
 		return (1);
-	
-
+	if (init_monitor(table))//faire attention a quand la destroy
+		return (1);
 	if (init_fork(table))
 		return (1);
 	return (0);
@@ -26,8 +26,10 @@ int	setup_struct(t_table *table)//libérer ici chaque chose si besoin ou au dess
 int	init_philo(t_table *table)
 {
 	int	i;
-
+	long	start;
 	i = 0;
+	start = get_current_time();
+	table->start_time = start;
 	table->philo_tab = malloc(sizeof(t_philo *) * (table->nbr_of_philo + 1));
 	if (!table->philo_tab)
 		return (1);
@@ -78,5 +80,25 @@ int	init_fork_tab(t_table *table)
 		i++;
 	}
 	table->fork_tab[i] = NULL;
+	return (0);
+}
+
+int	init_monitor(t_table *table)
+{
+	table->death_mutex = malloc(sizeof(t_mutex));
+	if (!table->death_mutex)
+		return (1);
+
+	pthread_mutex_init(table->death_mutex, NULL);
+	table->write_mutex = malloc(sizeof(t_mutex));
+	if (!table->write_mutex)
+		return (1);
+
+	pthread_mutex_init(table->write_mutex, NULL);
+	table->meal_mutex = malloc(sizeof(t_mutex));
+	if (!table->meal_mutex)
+		return (1);
+
+	pthread_mutex_init(table->meal_mutex, NULL);
 	return (0);
 }

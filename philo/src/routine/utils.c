@@ -14,14 +14,17 @@ void	set_data(void *s, int n)
 	return ;
 }
 
-void	handle_message(char *msg, t_philo *philo, int id)
+void	handle_message(char *msg, t_philo *philo, int id)//checker handle message 
 {
+	long	time;
+
+	time = (get_current_time() - philo->table->start_time);
 	pthread_mutex_lock(philo->table->write_mutex);
-	printf("time『%ld』 philo[%d], %s", );
+	printf("time『%ld』 philo[%d], %s",time , id, msg);
 	pthread_mutex_unlock(philo->table->write_mutex);
 }
 
-long	get_current_time(void);
+long	get_current_time(void)
 {
 	struct timeval time;
 	long	current_time;

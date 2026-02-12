@@ -49,13 +49,14 @@ typedef struct s_table
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			max_meal;
+	long			start_time;
 	bool			dead_routine;
 	t_philo			**philo_tab;
 	t_mutex			**fork_tab;
 	t_mutex			*write_mutex;
 	t_mutex			*death_mutex;
 	t_mutex			*meal_mutex;
-	pthread_t		*monitor;
+	pthread_t		monitor;
 }	t_table;
 
 /* ========================================================================== */
@@ -79,6 +80,8 @@ int			setup_struct(t_table *table);
 int			init_fork(t_table *table);
 int			init_fork_tab(t_table *table);
 int			init_philo(t_table *table);
+int		init_monitor(t_table *table);
+
 
 
 /* ========================================================================== */
@@ -87,10 +90,25 @@ int			init_philo(t_table *table);
 int			main(int ac, char **av);
 int			init_routine(t_table *table);
 void		*routine(void *table);
+void	eat(t_philo *philo, long time_to_eat);
+void	go_sleep(t_philo *philo, long time_to_sleep);
+void	think(t_philo *philo);
+
+
+int			join_all_thread(t_table *table);
+void		*monitor_routine(void *data);
+int			is_dead(t_philo *philo);
+int			check_dead(t_table *table);
+int			check_meals(t_table *table);
+int			stop_routine(t_philo *philo);
+
+
 
 
 /*utils*/
 void		set_data(void *s, int n);
+void	handle_message(char *msg, t_philo *philo, int id);
+long	get_current_time(void);
 
 /* ========================================================================== */
 /* ===============================cleaners====================================*/

@@ -12,11 +12,12 @@
 
 #include "philo.h"
 
-void	monitor_routine(void *data)
+void	*monitor_routine(void *data)
 {
 	t_table	*table;
 
 	table = (t_table *)data;
+
 	while (1)
 	{
 		if (check_dead(table) || check_meals(table))
@@ -24,31 +25,22 @@ void	monitor_routine(void *data)
 	}
 	return (NULL);
 }
-int	is_dead(t_philo *philo)
-{
-	pthread_mutex_lock(philo->table->meal_mutex);
-	if (get_current_time - philo->last_meal > philo->table->time_to_eat)
-	{
-			pthread_mutex_unlock(philo->table->meal_mutex);
-
-		return (1);
-	}
-	pthread_mutex_unlock(philo->table->meal_mutex);
-	return (0);
-}
 
 int	check_dead(t_table *table)
 {
 	int	i;
 
 	i = 0;
+	// 	
+	// printf("nbr == %d\n", table->nbr_of_philo);
+
 	while (i < table->nbr_of_philo)
 	{
-		if (is_dead(table->philo[i]))
+		if (is_dead(table->philo_tab[i]))
 		{
-			handle_message("has died 💀", table->philo[i], table->philo[i]->id);
+			handle_message("has died 💀", table->philo_tab[i], table->philo_tab[i]->id);
 			pthread_mutex_lock(table->death_mutex);
-			table->philo[i]->is_dead = true;
+			table->philo_tab[i]->is_dead = true;
 			pthread_mutex_unlock(table->death_mutex);
 			return (1);
 		}
@@ -67,20 +59,34 @@ int	check_meals(t_table *table)
 	while (i < table->nbr_of_philo)
 	{
 		pthread_mutex_lock(table->meal_mutex);
-		if (table->philo[i]->meal_eaten >= table->max_meal)
+		if (table->philo_tab[i]->meal_eaten >= table->max_meal)
 			full++;
 		i++;
 		pthread_mutex_unlock(table->meal_mutex);
 	}
 	if (full == table->nbr_of_philo)
 	{
-		pthread_mutex_lock(table->dead_routine);
+		pthread_mutex_lock(table->death_mutex);
 		table->dead_routine = true;
-		pthread_mutex_unlock(table->dead_routine);
+		pthread_mutex_unlock(table->death_mutex);
 		return (1);
 	}
 	return (0);
 }
+
+int	is_dead(t_philo *philo)
+{
+	pthread_mutex_lock(philo->table->meal_mutex);
+	if (get_current_time() - philo->last_meal > philo->table->time_to_eat)
+	{
+			pthread_mutex_unlock(philo->table->meal_mutex);
+
+		return (1);
+	}
+	pthread_mutex_unlock(philo->table->meal_mutex);
+	return (0);
+}
+
 int	stop_routine(t_philo *philo)
 {
 	pthread_mutex_lock(philo->table->death_mutex);

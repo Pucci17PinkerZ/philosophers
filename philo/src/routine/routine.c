@@ -22,7 +22,7 @@ void	*routine(void *data)
 	while (!stop_routine(philo))
 	{
 		eat(philo, philo->table->time_to_eat);
-		sleep(philo, philo->table->time_to_sleep);
+		go_sleep(philo, philo->table->time_to_sleep);
 		think(philo);
 	}
 	return (NULL);
@@ -41,10 +41,13 @@ void	eat(t_philo *philo, long time_to_eat)
 	}
 	pthread_mutex_lock(philo->right_fork);
 	handle_message("has taken right fork🍴\n", philo, philo->id);
-	pthread_mutex_lock(philo->table->is_eating);
+	pthread_mutex_lock(philo->table->meal_mutex);
 	philo->eating = true;
 	philo->meal_eaten++;
 	philo->last_meal = get_current_time();
+	pthread_mutex_unlock(philo->table->meal_mutex);
+	handle_message("is eating🍖\n",philo, philo->id);
+	usleep(time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);//check ici si l'ordre ne change rien;
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_lock(philo->table->meal_mutex);
@@ -52,7 +55,7 @@ void	eat(t_philo *philo, long time_to_eat)
 	pthread_mutex_unlock(philo->table->meal_mutex);
 }
 
-void	sleep(t_philo *philo, long time_to_sleep);
+void	go_sleep(t_philo *philo, long time_to_sleep)
 {
 	handle_message("is slepping😴\n", philo, philo->id);
 	usleep(time_to_sleep);
