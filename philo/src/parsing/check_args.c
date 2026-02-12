@@ -20,7 +20,7 @@ int	check_args(t_table *table, char **av)
 	if (!args)
 		return (1);
 	if (check_args_value(table, args))
-		return (free_tab(args, 0),printf("value not ok\n"), 1);
+		return (free_tab(args, 0), printf("value not ok\n"), 1);
 	free_tab(args, 0);
 	printf("args ok!\n");
 	return (0);
@@ -28,7 +28,7 @@ int	check_args(t_table *table, char **av)
 
 char	**assign_args(char **av)
 {
-	int	nbr_args;
+	int		nbr_args;
 	char	**args;
 	char	**tmp;
 
@@ -40,14 +40,13 @@ char	**assign_args(char **av)
 		return (NULL);
 	args = dup_tab(av, tmp, 0);
 	if (!args)
-		return (free_tab(tmp, 0),free_tab(args, 0), NULL);
+		return (free_tab(tmp, 0), free_tab(args, 0), NULL);
 	return (args);
 }
 
-
 int	find_args_nbr(char **av)
 {
-	int	i;
+	int		i;
 	int		tab_size;
 	char	**tab;
 
@@ -55,7 +54,7 @@ int	find_args_nbr(char **av)
 	tab_size = 0;
 	while (av[i])
 	{
-		tab = split(av[i],' ');
+		tab = split(av[i], ' ');
 		if (!tab)
 			return (-1);
 		tab_size += tab_len(tab);
@@ -67,13 +66,13 @@ int	find_args_nbr(char **av)
 	return (tab_size);
 }
 
-
 int	tab_len(char **tab)
 {
+	int	i;
+
+	i = 0;
 	if (!tab || !*tab)
 		return (0);
-	int	i;
-	i = 0;
 	while (tab[i])
 	{
 		i++;
@@ -91,14 +90,14 @@ char	**dup_tab(char **av, char **tab, int index)
 	while (av[index])
 	{
 		y = 0;
-		tmp = split(av[index],' ');
+		tmp = split(av[index], ' ');
 		if (!tmp)
 			return (free_tab(tab, 0), NULL);
 		while (tmp[y])
 		{
 			tab[tab_pos] = strdup(tmp[y]);
 			if (!tab[tab_pos])
-				return free_tab(tab, 0), free_tab(tmp, 0), (NULL);
+				return (free_tab(tab, 0), free_tab(tmp, 0), (NULL));
 			tab_pos++;
 			y++;
 		}

@@ -25,8 +25,9 @@ int	setup_struct(t_table *table)//libérer ici chaque chose si besoin ou au dess
 
 int	init_philo(t_table *table)
 {
-	int	i;
+	int		i;
 	long	start;
+
 	i = 0;
 	start = get_current_time();
 	table->start_time = start;
@@ -36,8 +37,8 @@ int	init_philo(t_table *table)
 	while (i < table->nbr_of_philo)
 	{
 		table->philo_tab[i] = malloc(sizeof(t_philo));
-			if (!table->philo_tab[i])
-				return (1);
+		if (!table->philo_tab[i])
+			return (1);
 		set_data(table->philo_tab[i], sizeof(t_philo));
 		table->philo_tab[i]->id = i + 1;
 		table->philo_tab[i]->table = table;
@@ -88,17 +89,14 @@ int	init_monitor(t_table *table)
 	table->death_mutex = malloc(sizeof(t_mutex));
 	if (!table->death_mutex)
 		return (1);
-
 	pthread_mutex_init(table->death_mutex, NULL);
 	table->write_mutex = malloc(sizeof(t_mutex));
 	if (!table->write_mutex)
 		return (1);
-
 	pthread_mutex_init(table->write_mutex, NULL);
 	table->meal_mutex = malloc(sizeof(t_mutex));
 	if (!table->meal_mutex)
 		return (1);
-
 	pthread_mutex_init(table->meal_mutex, NULL);
 	return (0);
 }

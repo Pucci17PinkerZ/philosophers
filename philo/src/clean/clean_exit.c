@@ -11,18 +11,6 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-/*destroy first the mutex then thread,data, fork , philo*/
-// void	free_struct(t_table	*table, char letter)
-// {
-// 	if (letter == 'P')
-// 		free_array((void **)table->philo_tab, 0);
-// 	if (letter == 'F')
-// 		free_array((void **)table->fork_tab, 0);
-// 	if (letter == 'M')
-// 		//delete tout les mutex
-// 	if (letter == 'T')
-// 		//detacher les thread qui bloquent
-// }
 
 void	free_tab(char **tab, int j)
 {
@@ -40,16 +28,12 @@ void	clean_exit(t_table	*table)
 {
 	if (!table)
 		return ;
-	//ici table existe
-	//clean les threads(philo)
 	if (table->philo_tab)
 		clean_philo(table);
-	free(philo_tab);
-	//clean les fork
+	free(table->philo_tab);
 	if (table->fork_tab)
 		clean_fork(table);
-	free(fork_tab);
-	//clean le moniteur
+	free(table->fork_tab);
 	if (table->write_mutex)
 		free(table->write_mutex);
 	if (table->death_mutex)
@@ -69,6 +53,7 @@ void	clean_philo(t_table	*table)
 		i++;
 	}
 }
+
 void	clean_fork(t_table	*table)
 {
 	int	i;
@@ -80,17 +65,3 @@ void	clean_fork(t_table	*table)
 		i++;
 	}
 }
-
-
-
-// void	free_array(void **tab, int j)
-// {
-// 	if (!tab)
-// 		return ;
-// 	while (tab[j])
-// 		j++;
-// 	j++;
-// 	while (j > 0)
-// 		free(tab[--j]);
-// 	free(tab);
-// }

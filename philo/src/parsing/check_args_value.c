@@ -27,19 +27,11 @@ int	check_args_value(t_table *table, char **args)
 		if (nbr == -1)
 			return (1);
 		(void)table;
-		set_table_values(table, nbr, i);//pour mettre les valeurs au bon endroits{1}
+		set_table_values(table, nbr, i);
 		i++;
 	}
 	return (0);
 }
-
-	//checker chaque élément dans le tableau dans une boucle while
-	//free les éléments seulements à la sortie
-	//si le chiffre est juste le transformer de char à int
-	// l'assigner a la valeur de i avec des conditions dans l'emplacement souhaité dans la struct
-	//puis le parsing est terminé
-
-	//{1} faire une condition qui check quelle valeur est assigné par rapport au i.
 
 void	set_table_values(t_table *table, int nbr, int i)
 {
@@ -64,7 +56,6 @@ void	set_table_values(t_table *table, int nbr, int i)
 		table->max_meal = nbr;
 	}
 }
-
 
 int	is_arg_nbr(char *arg)
 {
@@ -112,5 +103,3 @@ long long	atoll(const char *nptr)
 	}
 	return (res * sign);
 }
-
-

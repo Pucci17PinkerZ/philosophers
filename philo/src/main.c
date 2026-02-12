@@ -22,8 +22,10 @@ int	main(int ac, char **av)
 		return (1);
 	if (setup_struct(&table))
 		return (1);
-	init_routine(&table);//les deux fonctions ci-dessous peuvent retourner faux
-	join_all_thread(&table);
+	if (init_routine(&table))
+		return (1);
+	if (join_all_thread(&table))
+		return (1);
 	clean_exit(&table);
 	return (0);
 }
@@ -36,7 +38,7 @@ int	init_routine(t_table *table)
 	while (i < table->nbr_of_philo)
 	{
 		if (pthread_create(&table->philo_tab[i]->thread_id, NULL,
-			routine, (void *)table->philo_tab[i]))
+				routine, (void *)table->philo_tab[i]))
 			return (printf("error philo thread creation\n"), 1);
 		i++;
 	}
@@ -60,18 +62,3 @@ int	join_all_thread(t_table *table)
 		return (printf("error monitor_thread join\n"), 1);
 	return (0);
 }
-
-	//créer  un tableau avec tout mes philo
-	//assigner les fourchette gauche droite a chque philo
-
-// int	manage_routine(t_philo *philo)//on va donner cette fonction a thread_create
-// {
-	
-// }
-
-
-
-// void	check_philo_life()//ici on va lancer un thread tout seul pour checker si les philo sont dead ou pas
-// {
-
-// }

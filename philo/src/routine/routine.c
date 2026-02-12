@@ -46,7 +46,7 @@ void	eat(t_philo *philo, long time_to_eat)
 	philo->meal_eaten++;
 	philo->last_meal = get_current_time();
 	pthread_mutex_unlock(philo->table->meal_mutex);
-	handle_message("is eating🍖\n",philo, philo->id);
+	handle_message("is eating🍖\n", philo, philo->id);
 	usleep(time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);//check ici si l'ordre ne change rien;
 	pthread_mutex_unlock(philo->right_fork);
