@@ -17,7 +17,7 @@ void	*routine(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	if ((philo->id % 2) == 1)
+	if (!(philo->id % 2))
 		usleep(1);
 	while (!stop_routine(philo))
 	{
@@ -48,7 +48,7 @@ void	eat(t_philo *philo, long time_to_eat)
 	pthread_mutex_unlock(philo->table->meal_mutex);
 	handle_message("is eating🍖\n", philo, philo->id);
 	usleep(time_to_eat);
-	pthread_mutex_unlock(philo->left_fork);//check ici si l'ordre ne change rien;
+	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_lock(philo->table->meal_mutex);
 	philo->eating = false;

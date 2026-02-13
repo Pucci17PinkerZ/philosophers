@@ -22,10 +22,8 @@ int	main(int ac, char **av)
 		return (1);
 	if (setup_struct(&table))
 		return (1);
-	if (init_routine(&table))
-		return (1);
-	if (join_all_thread(&table))
-		return (1);
+	init_routine(&table);
+	join_all_thread(&table);
 	clean_exit(&table);
 	return (0);
 }

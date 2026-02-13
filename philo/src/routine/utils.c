@@ -28,15 +28,13 @@ void	handle_message(char *msg, t_philo *philo, int id)//checker handle message
 {
 	long	time;
 
-	time = (get_current_time() - philo->table->start_time);
-	pthread_mutex_lock(philo->table->death_mutex);
-	if (philo->table->dead_routine == false)
+	pthread_mutex_lock(philo->table->write_mutex);
+	if (!stop_routine(philo))
 	{
-		pthread_mutex_lock(philo->table->write_mutex);//mettre un mutex et check si dead routine est true
+		time = (get_current_time() - philo->table->start_time);
 		printf("time『%ld』 philo[%d], %s",time , id, msg);
-		pthread_mutex_unlock(philo->table->write_mutex);
 	}
-	pthread_mutex_unlock(philo->table->death_mutex);
+	pthread_mutex_unlock(philo->table->write_mutex);
 }
 
 long	get_current_time(void)

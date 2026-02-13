@@ -53,6 +53,8 @@ int	check_meals(t_table *table)
 
 	i = 0;
 	full = 0;
+	if (table->max_meal == 0)
+		return (0);
 	while (i < table->nbr_of_philo)
 	{
 		pthread_mutex_lock(table->meal_mutex);
@@ -73,14 +75,14 @@ int	check_meals(t_table *table)
 
 int	is_dead(t_philo *philo)
 {
-	pthread_mutex_lock(philo->table->meal_mutex);
+	pthread_mutex_lock(philo->table->death_mutex);
 	if (get_current_time() - philo->last_meal > philo->table->time_to_die)
 	{
 		philo->is_dead = true;
-		pthread_mutex_unlock(philo->table->meal_mutex);
+		pthread_mutex_unlock(philo->table->death_mutex);
 		return (1);
 	}
-	pthread_mutex_unlock(philo->table->meal_mutex);
+	pthread_mutex_unlock(philo->table->death_mutex);
 	return (0);
 }
 
@@ -89,6 +91,7 @@ int	stop_routine(t_philo *philo)
 	pthread_mutex_lock(philo->table->death_mutex);
 	if (philo->is_dead == true)
 	{
+
 		pthread_mutex_unlock(philo->table->death_mutex);
 		return (1);
 	}
