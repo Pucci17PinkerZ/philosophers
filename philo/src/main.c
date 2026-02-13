@@ -33,8 +33,10 @@ int	init_routine(t_table *table)
 	int	i;
 
 	i = 0;
+	table->start_time = get_current_time();
 	while (i < table->nbr_of_philo)
 	{
+		table->philo_tab[i]->last_meal = table->start_time;
 		if (pthread_create(&table->philo_tab[i]->thread_id, NULL,
 				routine, (void *)table->philo_tab[i]))
 			return (printf("error philo thread creation\n"), 1);

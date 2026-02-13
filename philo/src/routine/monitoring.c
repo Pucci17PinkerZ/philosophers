@@ -37,7 +37,7 @@ int	check_dead(t_table *table)
 			handle_message("has died 💀\n",
 				table->philo_tab[i], table->philo_tab[i]->id);
 			pthread_mutex_lock(table->death_mutex);
-			table->philo_tab[i]->is_dead = true;
+			table->dead_routine = true;
 			pthread_mutex_unlock(table->death_mutex);
 			return (1);
 		}
@@ -89,7 +89,7 @@ int	is_dead(t_philo *philo)
 int	stop_routine(t_philo *philo)
 {
 	pthread_mutex_lock(philo->table->death_mutex);
-	if (philo->is_dead == true)
+	if (philo->table->dead_routine == true)
 	{
 
 		pthread_mutex_unlock(philo->table->death_mutex);

@@ -12,11 +12,11 @@
 
 #include "philo.h"
 
-int	setup_struct(t_table *table)//libérer ici chaque chose si besoin ou au dessus?
+int	setup_struct(t_table *table)
 {
 	if (init_philo(table))
 		return (1);
-	if (init_monitor(table))//faire attention a quand la destroy
+	if (init_monitor(table))
 		return (1);
 	if (init_fork(table))
 		return (1);
@@ -26,11 +26,8 @@ int	setup_struct(t_table *table)//libérer ici chaque chose si besoin ou au dess
 int	init_philo(t_table *table)
 {
 	int		i;
-	long	start;
 
 	i = 0;
-	start = get_current_time();
-	table->start_time = start;
 	table->philo_tab = malloc(sizeof(t_philo *) * (table->nbr_of_philo + 1));
 	if (!table->philo_tab)
 		return (1);

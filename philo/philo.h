@@ -21,7 +21,7 @@
 # include <stdbool.h>
 # include <pthread.h>
 
-# define MAX_PHILOS 200
+# define MAX_PHILO 200
 
 typedef pthread_mutex_t	t_mutex;
 

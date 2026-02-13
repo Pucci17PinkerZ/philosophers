@@ -19,6 +19,7 @@ void	*routine(void *data)
 	philo = (t_philo *)data;
 	if (!(philo->id % 2))
 		usleep(1);
+	printf("start time == %ld\n", get_current_time() - philo->table->start_time);
 	while (!stop_routine(philo))
 	{
 		eat(philo, philo->table->time_to_eat);
@@ -34,8 +35,7 @@ void	eat(t_philo *philo, long time_to_eat)
 	handle_message("has taken left fork🍴\n", philo, philo->id);
 	if (philo->table->nbr_of_philo == 1)
 	{
-		//si le philo est tout seul il doit mourrir
-		usleep(philo->table->time_to_die);
+		usleep(philo->table->time_to_die * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		return ;
 	}
@@ -47,7 +47,7 @@ void	eat(t_philo *philo, long time_to_eat)
 	philo->last_meal = get_current_time();
 	pthread_mutex_unlock(philo->table->meal_mutex);
 	handle_message("is eating🍖\n", philo, philo->id);
-	usleep(time_to_eat);
+	usleep(time_to_eat * 1000);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_lock(philo->table->meal_mutex);
@@ -58,7 +58,7 @@ void	eat(t_philo *philo, long time_to_eat)
 void	go_sleep(t_philo *philo, long time_to_sleep)
 {
 	handle_message("is slepping😴\n", philo, philo->id);
-	usleep(time_to_sleep);
+	usleep(time_to_sleep * 1000);
 }
 
 void	think(t_philo *philo)

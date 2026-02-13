@@ -24,7 +24,7 @@ void	set_data(void *s, int n)
 	return ;
 }
 
-void	handle_message(char *msg, t_philo *philo, int id)//checker handle message 
+void	handle_message(char *msg, t_philo *philo, int id)
 {
 	long	time;
 
