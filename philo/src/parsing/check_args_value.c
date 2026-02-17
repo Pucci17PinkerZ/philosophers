@@ -29,7 +29,7 @@ int	check_args_value(t_table *table, char **args)
 		set_table_values(table, nbr, i);
 		i++;
 	}
-	if (table->nbr_of_philo > MAX_PHILO)
+	if (table->nbr_of_philo > MAX_PHILO || table->nbr_of_philo < 1)
 		return (1);
 	return (0);
 }

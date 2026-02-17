@@ -19,7 +19,6 @@ void	*routine(void *data)
 	philo = (t_philo *)data;
 	if (!(philo->id % 2))
 		usleep(1);
-	printf("start time == %ld\n", get_current_time() - philo->table->start_time);
 	while (!stop_routine(philo))
 	{
 		eat(philo, philo->table->time_to_eat);

@@ -91,7 +91,6 @@ int	stop_routine(t_philo *philo)
 	pthread_mutex_lock(philo->table->death_mutex);
 	if (philo->table->dead_routine == true)
 	{
-
 		pthread_mutex_unlock(philo->table->death_mutex);
 		return (1);
 	}

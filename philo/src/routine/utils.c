@@ -32,7 +32,7 @@ void	handle_message(char *msg, t_philo *philo, int id)
 	if (!stop_routine(philo))
 	{
 		time = (get_current_time() - philo->table->start_time);
-		printf("time『%ld』 philo[%d], %s",time , id, msg);
+		printf("time『%ld』 philo[%d], %s", time, id, msg);
 	}
 	pthread_mutex_unlock(philo->table->write_mutex);
 }

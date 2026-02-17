@@ -55,7 +55,8 @@ int	init_fork(t_table *table)
 	while (table->philo_tab[i])
 	{
 		table->philo_tab[i]->left_fork = table->fork_tab[i];
-		table->philo_tab[i]->right_fork = table->fork_tab[(i + 1) % table->nbr_of_philo];
+		table->philo_tab[i]->right_fork
+			= table->fork_tab[(i + 1) % table->nbr_of_philo];
 		i++;
 	}
 	return (0);

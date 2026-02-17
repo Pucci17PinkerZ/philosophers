@@ -22,7 +22,6 @@ int	check_args(t_table *table, char **av)
 	if (check_args_value(table, args))
 		return (free_tab(args, 0), printf("value not ok\n"), 1);
 	free_tab(args, 0);
-	printf("args ok!\n");
 	return (0);
 }
 
