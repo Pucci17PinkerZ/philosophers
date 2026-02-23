@@ -75,8 +75,13 @@ int	check_meals(t_table *table)
 
 int	is_dead(t_philo *philo)
 {
+	long	meal_time;
+
+	pthread_mutex_lock(philo->table->meal_mutex);
+	meal_time = philo->last_meal;
+	pthread_mutex_unlock(philo->table->meal_mutex);
 	pthread_mutex_lock(philo->table->death_mutex);
-	if (get_current_time() - philo->last_meal > philo->table->time_to_die)
+	if ((get_current_time() - meal_time) > philo->table->time_to_die)
 	{
 		philo->is_dead = true;
 		pthread_mutex_unlock(philo->table->death_mutex);

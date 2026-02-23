@@ -56,7 +56,7 @@ void	eat(t_philo *philo, long time_to_eat)
 
 void	go_sleep(t_philo *philo, long time_to_sleep)
 {
-	handle_message("is slepping😴\n", philo, philo->id);
+	handle_message("is sleeping😴\n", philo, philo->id);
 	usleep(time_to_sleep * 1000);
 }
 
