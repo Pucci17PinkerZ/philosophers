@@ -21,6 +21,7 @@ void	*monitor_routine(void *data)
 	{
 		if (check_dead(table) || check_meals(table))
 			break ;
+		usleep(1000);
 	}
 	return (NULL);
 }
@@ -34,11 +35,12 @@ int	check_dead(t_table *table)
 	{
 		if (is_dead(table->philo_tab[i]))
 		{
-			handle_message("has died 💀\n",
-				table->philo_tab[i], table->philo_tab[i]->id);
+
 			pthread_mutex_lock(table->death_mutex);
 			table->dead_routine = true;
 			pthread_mutex_unlock(table->death_mutex);
+			handle_message("has died 💀\n",
+				table->philo_tab[i], table->philo_tab[i]->id);
 			return (1);
 		}
 		i++;

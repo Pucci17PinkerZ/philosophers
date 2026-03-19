@@ -17,8 +17,8 @@ void	*routine(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	if (!(philo->id % 2))
-		usleep(philo->table->time_to_eat / 2);
+	if (philo->id % 2)
+		usleep((philo->table->time_to_eat / 2) * 1000);
 	while (!stop_routine(philo))
 	{
 		eat(philo, philo->table->time_to_eat);
@@ -34,7 +34,7 @@ void	eat(t_philo *philo, long time_to_eat)
 	handle_message("has taken left fork🍴\n", philo, philo->id);
 	if (philo->table->nbr_of_philo == 1)
 	{
-		usleep(philo->table->time_to_die * 1001);
+		usleep(philo->table->time_to_die * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		return ;
 	}

@@ -25,12 +25,13 @@ int	setup_struct(t_table *table)
 
 int	init_philo(t_table *table)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	table->philo_tab = malloc(sizeof(t_philo *) * (table->nbr_of_philo + 1));
 	if (!table->philo_tab)
 		return (1);
+	set_data(table->philo_tab, sizeof(t_philo *) * (table->nbr_of_philo + 1));
 	while (i < table->nbr_of_philo)
 	{
 		table->philo_tab[i] = malloc(sizeof(t_philo));
@@ -70,12 +71,13 @@ int	init_fork_tab(t_table *table)
 	table->fork_tab = malloc(sizeof(t_mutex *) * (table->nbr_of_philo + 1));
 	if (!table->fork_tab)
 		return (1);
+	set_data(table->fork_tab, sizeof(t_mutex *) * (table->nbr_of_philo + 1));
 	while (i < table->nbr_of_philo)
 	{
 		table->fork_tab[i] = malloc(sizeof(t_mutex));
-		pthread_mutex_init(table->fork_tab[i], NULL);
 		if (!table->fork_tab[i])
 			return (1);
+		pthread_mutex_init(table->fork_tab[i], NULL);
 		i++;
 	}
 	table->fork_tab[i] = NULL;

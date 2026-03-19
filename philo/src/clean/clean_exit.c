@@ -24,7 +24,7 @@ void	free_tab(char **tab, int j)
 	free(tab);
 }
 
-void	clean_exit(t_table	*table)
+void	clean_exit(t_table *table)
 {
 	if (!table)
 		return ;
@@ -35,11 +35,33 @@ void	clean_exit(t_table	*table)
 		clean_fork(table);
 	free(table->fork_tab);
 	if (table->write_mutex)
+	{
+		pthread_mutex_destroy(table->write_mutex);
 		free(table->write_mutex);
+	}
 	if (table->death_mutex)
+	{
+		pthread_mutex_destroy(table->death_mutex);
 		free(table->death_mutex);
+	}
 	if (table->meal_mutex)
+	{
+		pthread_mutex_destroy(table->meal_mutex);
 		free(table->meal_mutex);
+	}
+}
+
+void	clean_fork(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (table->fork_tab[i])
+	{
+		pthread_mutex_destroy(table->fork_tab[i]);
+		free(table->fork_tab[i]);
+		i++;
+	}
 }
 
 void	clean_philo(t_table	*table)
@@ -50,18 +72,6 @@ void	clean_philo(t_table	*table)
 	while (table->philo_tab[i])
 	{
 		free(table->philo_tab[i]);
-		i++;
-	}
-}
-
-void	clean_fork(t_table	*table)
-{
-	int	i;
-
-	i = 0;
-	while (table->fork_tab[i])
-	{
-		free(table->fork_tab[i]);
 		i++;
 	}
 }
