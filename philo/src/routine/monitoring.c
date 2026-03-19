@@ -35,12 +35,13 @@ int	check_dead(t_table *table)
 	{
 		if (is_dead(table->philo_tab[i]))
 		{
-
 			pthread_mutex_lock(table->death_mutex);
 			table->dead_routine = true;
 			pthread_mutex_unlock(table->death_mutex);
-			handle_message("has died 💀\n",
-				table->philo_tab[i], table->philo_tab[i]->id);
+			pthread_mutex_lock(table->write_mutex);
+			printf("time『%ld』 philo[%d], has died 💀\n",
+				get_current_time() - table->start_time, table->philo_tab[i]->id);
+			pthread_mutex_unlock(table->write_mutex);
 			return (1);
 		}
 		i++;
