@@ -53,9 +53,9 @@ int	init_fork(t_table *table)
 	i = 0;
 	if (init_fork_tab(table))
 		return (1);
-	while (table->philo_tab[i])
+	while (i < table->nbr_of_philo)
 	{
-		if (i == table->nbr_of_philo)
+		if (i == table->nbr_of_philo - 1)
 		{
 			table->philo_tab[i]->left_fork
 				= table->fork_tab[(i + 1) % table->nbr_of_philo];
