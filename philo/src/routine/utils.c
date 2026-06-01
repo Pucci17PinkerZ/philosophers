@@ -46,3 +46,16 @@ long	get_current_time(void)
 	current_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	return (current_time);
 }
+
+void	precise_sleep(t_philo *philo, long ms)
+{
+	long	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < ms)
+	{
+		if (stop_routine(philo))
+			break ;
+		usleep(500);
+	}
+}

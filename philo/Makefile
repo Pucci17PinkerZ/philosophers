@@ -7,7 +7,7 @@ RESET    = \033[0m
 # --- VARIABLES ---
 CC       = cc
 NAME     = philo
-CFLAGS   = -Wall -Wextra -Werror
+CFLAGS   = -Wall -Wextra -Werror -pthread
 INCLUDES = -I.
 
 # --- DIRECTORIES ---
@@ -39,7 +39,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo -e "$(BLUE)Linking $(NAME)...$(RESET)"
-	@$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) -lpthread -o $(NAME)
 	@echo -e "$(GREEN)Build successful!$(RESET)"
 
 $(OBJ_DIR)/%.o: %.c

@@ -99,6 +99,7 @@ int			stop_routine(t_philo *philo);
 void		set_data(void *s, int n);
 void		handle_message(char *msg, t_philo *philo, int id);
 long		get_current_time(void);
+void		precise_sleep(t_philo *philo, long ms);
 
 /* ========================================================================== */
 /* ===============================cleaners====================================*/
