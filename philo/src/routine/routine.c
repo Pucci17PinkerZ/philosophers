@@ -64,4 +64,5 @@ void	go_sleep(t_philo *philo, long time_to_sleep)
 void	think(t_philo *philo)
 {
 	handle_message("is thinking🤔\n", philo, philo->id);
+	usleep(500);
 }
