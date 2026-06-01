@@ -18,7 +18,7 @@ void	*routine(void *data)
 
 	philo = (t_philo *)data;
 	if (philo->id % 2 == 0)
-	precise_sleep(philo, philo->table->time_to_eat / 2);
+		precise_sleep(philo, philo->table->time_to_eat / 2);
 	while (!stop_routine(philo))
 	{
 		eat(philo, philo->table->time_to_eat);

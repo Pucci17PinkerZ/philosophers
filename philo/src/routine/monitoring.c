@@ -50,7 +50,7 @@ int	check_dead(t_table *table)
 	return (0);
 }
 
-int    check_meals(t_table *table)
+int	check_meals(t_table *table)
 {
 	int	i;
 	int	full;
